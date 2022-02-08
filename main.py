@@ -103,11 +103,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
             self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
 
             rotina = RotinaExecutada(self.dado)
-            print(rotina.banho.nome_banho)
-            print(rotina.banho.temperatura_banho)
-            print(rotina.banho.tempo_banho)
-            print(rotina.banho.ganho_proporcional)
-            self.execucao = Execucao(self.dado, self)
+            self.execucao = Execucao(self.dado, self, rotina)
             self.execucao.start()
 
             self.iniciaTelaProcessando()
@@ -245,6 +241,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.set_tamanho_da_amostra(self.dado.TAMANHO_NENHUM)
         self.dado.set_reagente(self.dado.REAGENTE_NENHUM)
         self.dado.set_formol_ativado(False)
+        self.dado._ativa_execucao = False
         self.iniciaPrincipal()
         self.destroy_TelaConfirmaCancelamento()
 

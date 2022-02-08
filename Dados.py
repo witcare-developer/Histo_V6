@@ -41,6 +41,7 @@ class Dado:
         self._temperatura_sistema = 0
         self._temperatura_set_point = 0
         self._ganho_poporcional_sistema = 0
+        self._ativa_execucao = True
 
         self._formol_esta_ativado = False
         self._texto_formol_ativado = "FIXAÇÃO: DESATIVADO"

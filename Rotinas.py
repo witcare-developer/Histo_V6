@@ -478,12 +478,15 @@ class RotinaExecutada:
         if self._dado.reagente == self._dado.REAGENTE_XILOL:
             self._banho = RotinaXilol(self._dado)
             self._banho.iniciar( formol_eh_ativado = self._dado.formol_esta_ativado )
+            self._dado._ativa_execucao = True
         elif self._dado.reagente == self._dado.REAGENTE_ISOPROPANOL:
             self._banho = RotinaIsopropanol(self._dado)
             self._banho.iniciar( formol_eh_ativado = self._dado.formol_esta_ativado )
+            self._dado._ativa_execucao = True
         elif self._dado.reagente == self._dado.REAGENTE_WITCLEAR:
             self._banho = RotinaXilol(self._dado)
             self._banho.iniciar( formol_eh_ativado = self._dado.formol_esta_ativado )
+            self._dado._ativa_execucao = True
 
     @property
     def banho(self):
