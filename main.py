@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from sqlalchemy import null
+#from sqlalchemy import null
 from Saidas import Saidas
 from Watchdog import Watchdog
 #from SensorMlx90614 import MlX90614
@@ -26,7 +26,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado = Dado()
         self.buzzer = Beep(self.dado)
         self.controle_proporcional = ControleProporcional(self.dado, self.out)
-        self.execucao = null
+        self.execucao = None
         
         
         self.wtd.start()

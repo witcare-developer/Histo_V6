@@ -1,4 +1,3 @@
-from sqlalchemy import null
 from Dados import Dado
 
 class RotinaXilol:
@@ -474,7 +473,7 @@ class RotinaWitclear:
 class RotinaExecutada:
     def __init__(self, dado):
         self._dado = dado
-        self._banho = null
+        self._banho = None
 
         if self._dado.reagente == self._dado.REAGENTE_XILOL:
             self._banho = RotinaXilol(self._dado)
