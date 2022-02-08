@@ -1,4 +1,5 @@
-import smbus
+from typing import Any
+import smbus 
 import threading
 import time
 
@@ -28,12 +29,13 @@ class MlX90614(threading.Thread):
     """
     
     
-    def __init__(self, address=0x5A, bus_num=1, arredondamento=2):
+    def __init__(self, address=0x5A, bus_num=1, arredondamento=2, dado = Any):
         threading.Thread.__init__(self)
         self.bus_num = bus_num
         self.address = address
         self.bus = smbus.SMBus(bus=bus_num)
         self.arredondamento = arredondamento
+        self._dado = dado
 
         self.VALOR_TEMPERATURA = -1
         
@@ -74,6 +76,8 @@ class MlX90614(threading.Thread):
         while True:
             time.sleep(1)
             self.VALOR_TEMPERATURA = self.get_amb_temp()
+            self._dado.set_temperatura_sistema(self.VALOR_TEMPERATURA)
+            #print(self.VALOR_TEMPERATURA)
 
     
     

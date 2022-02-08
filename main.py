@@ -3,7 +3,7 @@ import tkinter as tk
 #from sqlalchemy import null
 from Saidas import Saidas
 from Watchdog import Watchdog
-#from SensorMlx90614 import MlX90614
+from SensorMlx90614 import MlX90614
 from ControleProporcional import ControleProporcional
 from Dados import Dado
 from Buzzer import Beep
@@ -22,8 +22,8 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
     def __init__(self):
         self.out = Saidas()
         self.wtd = Watchdog()
-        #self.sensor = MlX90614(arredondamento=1)
         self.dado = Dado()
+        self.sensor = MlX90614(arredondamento=1, dado=self.dado)
         self.buzzer = Beep(self.dado)
         self.controle_proporcional = ControleProporcional(self.dado, self.out)
         self.execucao = None
@@ -31,7 +31,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         
         self.wtd.start()
         self.buzzer.start()
-        #self.sensor.start()
+        self.sensor.start()
         self.controle_proporcional.start()
         self.out.magnetron(1)
         self.out.ventilador(1)
