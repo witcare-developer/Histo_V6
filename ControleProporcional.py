@@ -8,7 +8,7 @@ class ControleProporcional(threading.Thread):
     def __init__(self, dado, saida):
         threading.Thread.__init__(self)
         self.out = saida
-        self.dado = dado
+        self._dado = dado
         self.Et=0.0
         self.Mv=0.0
         self.Pb=0.0
@@ -17,9 +17,9 @@ class ControleProporcional(threading.Thread):
             
     def run(self):
         while True:
-            if self.dado.controle_estah_acionado == True:
-                self.Et = self.dado.temperatura_set_point - self.dado.temperatura_sistema
-                self.Pb = self.dado.ganho_poporcional_sistema
+            if self._dado.controle_estah_acionado == True:
+                self.Et = self._dado.temperatura_set_point - self._dado.temperatura_sistema
+                self.Pb = self._dado.ganho_poporcional_sistema
 
                 if self.Pb < 0.2:
                     self.Pb = 0.2
@@ -47,14 +47,16 @@ class ControleProporcional(threading.Thread):
                 time.sleep(1)
 
     def aciona_pwm(self, porcento):
-        self.ton_pwm = (porcento * self.dado.PERIODO_PWM)/100
-        self.toff_pwm = self.dado.PERIODO_PWM - self.ton_pwm
+        self.ton_pwm = (porcento * self._dado.PERIODO_PWM)/100
+        self.toff_pwm = self._dado.PERIODO_PWM - self.ton_pwm
 
 if __name__ == '__main__':
+    from Watchdog import Watchdog
     dado = Dado()
     dado.set_tamanho_da_amostra(dado.TAMANHO_ESPECIAL)
-
+ 
     saidas = Saidas()
+    wtd = Watchdog()
 
     dado.controle_estah_acionado = True
     dado.set_temperatura_sistema(20)
@@ -62,7 +64,10 @@ if __name__ == '__main__':
     dado.set_ganho_poporcional_sistema(6)
 
     controle = ControleProporcional(dado,saidas)
+
     controle.start()
+    wtd.start()
+
     time.sleep(5)
     dado.set_temperatura_sistema(34.5)
     time.sleep(5)

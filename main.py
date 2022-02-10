@@ -102,11 +102,13 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         if self.dado.tamanho_da_amostra != self.dado.TAMANHO_NENHUM and self.dado.reagente != self.dado.REAGENTE_NENHUM:
             self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
 
+            self.dado.controle_estah_acionado = True
+
             rotina = RotinaExecutada(self.dado)
             self.execucao = Execucao(self.dado, self, rotina)
-            self.execucao.start()
-
+        
             self.iniciaTelaProcessando()
+            self.execucao.start()
             self.destroyProcessoPadrao()
 
         else:
@@ -217,6 +219,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
     def onBotaoCancelar_TelaProcessando(self, event):
         super().onBotaoCancelar_TelaProcessando(event)
         self.dado.tela_ativa = self.dado.TELA_CONFIRMA_CANCELAMENTO
+        self.dado.controle_estah_acionado = False
         self.inicia_TelaConfirmaCancelamento()
         self.destroy_TelaProcessando()
 
@@ -241,12 +244,16 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.set_tamanho_da_amostra(self.dado.TAMANHO_NENHUM)
         self.dado.set_reagente(self.dado.REAGENTE_NENHUM)
         self.dado.set_formol_ativado(False)
-        self.dado._ativa_execucao = False
+        self.dado.controle_estah_acionado = False
         self.iniciaPrincipal()
         self.destroy_TelaConfirmaCancelamento()
 
     def onBotaoNao_TelaConfirmaCancelamento(self, event):
         super().onBotaoNao_TelaConfirmaCancelamento(event)
+        self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
+        self.dado.controle_estah_acionado = True
+        self.iniciaTelaProcessando()
+        self.destroy_TelaConfirmaCancelamento()
     #-----------------------------------------------------------------
     #TelaFinalProcesso
     def onBotaoOk_TelaFinalProcesso(self, event):
