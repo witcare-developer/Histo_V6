@@ -64,7 +64,7 @@ class Dado:
         self._red = '#FF0000'
         self._green = '#2CCA28'
         self._window_w = 480
-        self._window_h = 272
+        self._window_h = 320
         
     @property
     def cursor(self):
@@ -210,3 +210,6 @@ class Dado:
 
     def set_texto_nome_processo(self, nome_processo):
         self._texto_nome_do_processo = nome_processo
+
+    def set_nome_proximo_reagente(self, nome_reagente):
+        self._nome_proximo_reagente = nome_reagente
