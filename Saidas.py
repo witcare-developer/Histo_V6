@@ -23,6 +23,10 @@ class Saidas:
         GPIO.output(self.PINO_WATCHDOG, 0)
         GPIO.output(self.PINO_MAG, 0)
         GPIO.output(self.PINO_VENT, 0)
+
+    @property
+    def porta_in(self):
+        return GPIO.input(self.PINO_PORTA)
         
     def buzzer(self, estado):
         if estado == 1:

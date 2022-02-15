@@ -26,10 +26,19 @@ class Execucao(threading.Thread):
                 self.toggle_banho(self._dado.index_banho)
 
                 if self._dado.temperatura_sistema > (self._rotina.banho.temperatura_banho[self._dado.index_banho])*0.98:
-                    if self._tempo_corrente_banho >= self._rotina.banho.tempo_banho[self._dado.index_banho]:
+                    if self._tempo_corrente_banho >= (self._rotina.banho.tempo_banho[self._dado.index_banho]):
+                        self._tempo_corrente_banho = 0
                         self.proximo_banho()
+                    else:
+                        self._tempo_corrente_banho += 1
+                self.atualiza_progresso()
 
             time.sleep(1)
+
+    def atualiza_progresso(self):
+        valor = (self._tempo_corrente_banho * 100)/(self._rotina.banho.tempo_banho[self._dado.index_banho])
+        self._dado.set_texto_percento_progresso_banho(valor)
+        self._tela.canvas_TelaProcessando.itemconfig(self._tela.bttx_progresso_banho_TelaProcessando.objText, text= self._dado.texto_percento_progresso_banho)
 
     def proximo_banho(self):
         if self._dado.index_banho < len(self._rotina.banho.nome_banho):
@@ -38,6 +47,7 @@ class Execucao(threading.Thread):
                 self._dado.tela_ativa = self._dado.TELA_TROCA_BANHO
                 self._dado.controle_estah_acionado = False
                 self._dado.set_nome_proximo_reagente(self._rotina.banho.nome_banho[self._dado.index_banho])
+                self._dado.beep_fim_processo = True
                 self._tela.iniciaTelaTrocaBanho()
                 self._tela.destroy_TelaProcessando()
 
@@ -49,10 +59,11 @@ class Execucao(threading.Thread):
                 self._dado.set_tamanho_da_amostra(self._dado.TAMANHO_NENHUM)
                 self._dado.set_reagente(self._dado.REAGENTE_NENHUM)
                 self._dado.set_formol_ativado(False)
-                self._dado.controle_estah_acionado = False   
+                self._dado.controle_estah_acionado = False
+                self._dado.beep_fim_processo = True
 
                 self._tela.inicia_TelaFinalProcesso()
-                self._tela.destroy_TelaProcessando()
+                self._tela.destroy_TelaProcessando() 
 
     def config_ganho_proporcional(self):
         self._dado.set_ganho_poporcional_sistema(self._rotina.banho.ganho_proporcional[self._dado.index_banho])

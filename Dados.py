@@ -37,6 +37,7 @@ class Dado:
         self.tela_ativa = self.TELA_PRINCIPAL
         self.aciona_buzzer = True
         self.controle_estah_acionado = False
+        self.beep_fim_processo = False
 
         self._temperatura_sistema = 0
         self._temperatura_set_point = 0
@@ -49,7 +50,7 @@ class Dado:
         self._texto_reagente = "REAGENTE"
 
         self._texto_nome_do_processo = "NOME DO PROCESSO"
-        self._texto_percento_progresso_banho = "XX%"
+        self._texto_percento_progresso_banho = "0%"
         self._cor_indicacao_processo = "#505050"
         
         self._cursor = 'cross'
@@ -215,6 +216,10 @@ class Dado:
 
     def set_texto_nome_processo(self, nome_processo):
         self._texto_nome_do_processo = nome_processo
+
+    def set_texto_percento_progresso_banho(self, texto_num):
+        valor = ("%02d%%" %(int(texto_num)))
+        self._texto_percento_progresso_banho = valor
 
     def set_nome_proximo_reagente(self, nome_reagente):
         self._nome_proximo_reagente = nome_reagente

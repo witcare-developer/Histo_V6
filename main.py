@@ -242,13 +242,12 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         
 
         self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
+        self.dado.beep_fim_processo = False
 
         if self.dado.controle_estah_acionado == True:
             self.dado.set_texto_iniciar_pausar("PAUSAR")
         else:
             self.dado.set_texto_iniciar_pausar("INICIAR")
-        #self.canvas_TelaProcessando.itemconfig(self.bt_iniciar_TelaProcessando.objText, text=self.dado.texto_iniciar_pausar) 
-
 
         rotina = RotinaExecutada(self.dado)
         self.execucao = Execucao(self.dado, self, rotina)
@@ -284,6 +283,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.set_reagente(self.dado.REAGENTE_NENHUM)
         self.dado.set_formol_ativado(False)
         self.dado.controle_estah_acionado = False
+        self.dado.beep_fim_processo = False
         self.iniciaPrincipal()
         self.destroy_TelaFinalProcesso()
     
