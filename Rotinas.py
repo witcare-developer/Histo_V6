@@ -1,6 +1,6 @@
 from Dados import Dado
 
-class RotinaXilol:
+class RotinaXilol_:
     def __init__(self, dado):
         self._nome_banho = []
         self._temperatura_banho = []
@@ -123,6 +123,161 @@ class RotinaXilol:
 
             self.set_nome_banho('XILOL2')
             self.set_temperatura_banho(55)
+            self.set_tempo_banho(6)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+
+
+    def set_nome_banho(self, nome):
+        self._nome_banho.append(nome)
+
+    def set_temperatura_banho(self, temperatura):
+        self._temperatura_banho.append(temperatura)
+        
+    def set_tempo_banho(self, tempo):
+        self._tempo_banho.append(tempo)
+
+    def set_ganho_proporcional(self, ganho):
+        self._ganho_proporcional.append(ganho)
+
+    @property
+    def nome_banho(self):
+        return self._nome_banho
+
+    @property
+    def temperatura_banho(self):
+        return self._temperatura_banho
+
+    @property
+    def tempo_banho(self):
+        return self._tempo_banho
+
+    @property
+    def ganho_proporcional(self):
+        return self._ganho_proporcional
+
+class RotinaXilol:
+    def __init__(self, dado):
+        self._nome_banho = []
+        self._temperatura_banho = []
+        self._tempo_banho = []
+        self._ganho_proporcional = []
+        self._dado = dado
+
+    def iniciar(self, formol_eh_ativado=True):
+        if self._dado.tamanho_da_amostra == self._dado.TAMANHO_1A2:
+            if formol_eh_ativado ==True:
+                self.set_nome_banho('FORMOL')
+                self.set_temperatura_banho(30)
+                self.set_tempo_banho(30)
+                self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_FORMOL)
+            self.set_nome_banho('ALCOOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL2')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL3')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('XILOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+
+            self.set_nome_banho('XILOL2')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+
+        elif self._dado.tamanho_da_amostra == self._dado.TAMANHO_3A4:
+            if formol_eh_ativado ==True:
+                self.set_nome_banho('FORMOL')
+                self.set_temperatura_banho(30)
+                self.set_tempo_banho(30)
+                self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_FORMOL)
+            self.set_nome_banho('ALCOOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL2')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL3')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL4')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL5')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('XILOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+
+            self.set_nome_banho('XILOL2')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(5)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+        elif self._dado.tamanho_da_amostra == self._dado.TAMANHO_ESPECIAL:
+            if formol_eh_ativado ==True:
+                self.set_nome_banho('FORMOL1')
+                self.set_temperatura_banho(30)
+                self.set_tempo_banho(30)
+                self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_FORMOL)
+
+                self.set_nome_banho('FORMOL2')
+                self.set_temperatura_banho(30)
+                self.set_tempo_banho(30)
+                self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_FORMOL)
+            self.set_nome_banho('ALCOOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL2')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL3')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL4')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('ALCOOL5')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(7)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_ALCOOL)
+
+            self.set_nome_banho('XILOL1')
+            self.set_temperatura_banho(30)
+            self.set_tempo_banho(6)
+            self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
+
+            self.set_nome_banho('XILOL2')
+            self.set_temperatura_banho(30)
             self.set_tempo_banho(6)
             self.set_ganho_proporcional(self._dado.GANHO_PROPORCIONAL_XILOL)
 

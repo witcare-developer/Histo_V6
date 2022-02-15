@@ -13,7 +13,7 @@ class Beep(threading.Thread):
         while True:
             if self.dado.aciona_buzzer == True:  
                 #print('Beeeep!')    
-                self.out.buzzer(1)
+                #self.out.buzzer(1)
                 time.sleep(0.2)
                 self.out.buzzer(0)
                 self.dado.aciona_buzzer = False

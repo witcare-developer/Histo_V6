@@ -29,7 +29,6 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.execucao = None
         
         
-        self.wtd.start()
         self.buzzer.start()
         self.sensor.start()
         self.controle_proporcional.start()
@@ -38,6 +37,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         time.sleep(1)
         self.out.magnetron(0)
         self.out.ventilador(0)
+        self.wtd.start()
 
         self.root = tk.Tk()
 
@@ -102,7 +102,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         if self.dado.tamanho_da_amostra != self.dado.TAMANHO_NENHUM and self.dado.reagente != self.dado.REAGENTE_NENHUM:
             self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
 
-            self.dado.controle_estah_acionado = True
+            #self.dado.controle_estah_acionado = True
 
             rotina = RotinaExecutada(self.dado)
             self.execucao = Execucao(self.dado, self, rotina)
@@ -225,17 +225,38 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
 
     def onBotaoInicar_TelaProcessando(self, event):
         super().onBotaoInicar_TelaProcessando(event)
-        self.dado.tela_ativa = self.dado.TELA_FINAL_PROCESSO
-        self.inicia_TelaFinalProcesso()
-        self.destroy_TelaProcessando()
+        self.dado.controle_estah_acionado = not self.dado.controle_estah_acionado
+        if self.dado.controle_estah_acionado == True:
+            self.dado.set_texto_iniciar_pausar("PAUSAR")
+            rotina = RotinaExecutada(self.dado)
+            self.execucao = Execucao(self.dado, self, rotina)
+            self.execucao.start()
+        else:
+            self.dado.set_texto_iniciar_pausar("INICIAR")
+        self.canvas_TelaProcessando.itemconfig(self.bt_iniciar_TelaProcessando.objText, text=self.dado.texto_iniciar_pausar) 
 
     #-----------------------------------------------------------------
     #TelaTrocaBanho
     def onBotaoOk_TelaTrocaBanho(self, event):
         super().onBotaoOk_TelaTrocaBanho(event)
+        
+
         self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
+
+        if self.dado.controle_estah_acionado == True:
+            self.dado.set_texto_iniciar_pausar("PAUSAR")
+        else:
+            self.dado.set_texto_iniciar_pausar("INICIAR")
+        #self.canvas_TelaProcessando.itemconfig(self.bt_iniciar_TelaProcessando.objText, text=self.dado.texto_iniciar_pausar) 
+
+
+        rotina = RotinaExecutada(self.dado)
+        self.execucao = Execucao(self.dado, self, rotina)
+    
         self.iniciaTelaProcessando()
+        self.execucao.start()
         self.destroy_TelaTrocaBanho()
+
     #-----------------------------------------------------------------
     #TelaConfirmaCancelamento
     def onBotaoSim_TelaConfirmaCancelamento(self, event):
@@ -258,6 +279,13 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
     #TelaFinalProcesso
     def onBotaoOk_TelaFinalProcesso(self, event):
         super().onBotaoOk_TelaFinalProcesso(event)
+        self.dado.tela_ativa = self.dado.TELA_PRINCIPAL
+        self.dado.set_tamanho_da_amostra(self.dado.TAMANHO_NENHUM)
+        self.dado.set_reagente(self.dado.REAGENTE_NENHUM)
+        self.dado.set_formol_ativado(False)
+        self.dado.controle_estah_acionado = False
+        self.iniciaPrincipal()
+        self.destroy_TelaFinalProcesso()
     
     """ 
     Metodos dessa classe

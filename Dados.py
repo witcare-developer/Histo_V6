@@ -41,6 +41,7 @@ class Dado:
         self._temperatura_sistema = 0
         self._temperatura_set_point = 0
         self._ganho_poporcional_sistema = 0
+        self.index_banho = 0
 
         self._formol_esta_ativado = False
         self._texto_formol_ativado = "FIXAÇÃO: DESATIVADO"
@@ -53,7 +54,7 @@ class Dado:
         
         self._cursor = 'cross'
         self._nome_programa = 'Histo V6'
-        self._texto_iniciar_pausar = 'PAUSAR'
+        self._texto_iniciar_pausar = 'INICIAR'
         self._nome_proximo_reagente = 'AlCOOL'
         
         self._black = '#000000'
@@ -162,6 +163,7 @@ class Dado:
     def ganho_poporcional_sistema(self):
         return self._ganho_poporcional_sistema
 
+
     def set_temperatura_sistema(self, temperatura_sistema):
         self._temperatura_sistema = temperatura_sistema
 
@@ -199,6 +201,9 @@ class Dado:
             self._texto_reagente = "WITCLEAR"
         if self.reagente == self.REAGENTE_NENHUM:
             self._texto_reagente = "REAGENTE"
+
+    def set_texto_iniciar_pausar(self, texto):
+        self._texto_iniciar_pausar = texto
         
 
     def set_formol_ativado(self, estado):
