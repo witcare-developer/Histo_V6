@@ -805,6 +805,42 @@ class TelaConfirmaCancelamento:
     def onBotaoNao_TelaConfirmaCancelamento(self, event):
         self.dado_TelaConfirmaCancelamento.aciona_buzzer = True
 
+class TelaAvisoErro:
+    def __init__(self, tk_inter_TelaAvisoErro, dado_TelaAvisoErro):
+        self.tk_inter_TelaAvisoErro = tk_inter_TelaAvisoErro
+        self.frame_TelaAvisoErro = 0
+        self.dado_TelaAvisoErro = dado_TelaAvisoErro
+        self.canvas_TelaAvisoErro = 0
+
+        self.bttx_texto_linha1_TelaAvisoErro = 0
+        self.bttx_texto_linha2_TelaAvisoErro = 0
+        self.bttx_texto_linha3_TelaAvisoErro = 0
+        self.bttx_texto_linha4_TelaAvisoErro = 0
+
+        self.tk_inter_TelaAvisoErro.title('Histo_V6')
+        self.tk_inter_TelaAvisoErro.config(cursor=self.dado_TelaAvisoErro.cursor)
+        self.tk_inter_TelaAvisoErro.geometry("{0}x{1}+0+0".format(self.dado_TelaAvisoErro.window_w, self.dado_TelaAvisoErro.window_h))
+        self.tk_inter_TelaAvisoErro.overrideredirect(True)
+        
+    def iniciaTelaAvisoErro(self):
+        self.frame_TelaAvisoErro = tk.Frame(self.tk_inter_TelaAvisoErro)
+
+        #adiciona área para desenho
+        self.canvas_TelaAvisoErro = tk.Canvas(self.tk_inter_TelaAvisoErro, width=self.dado_TelaAvisoErro.window_w, height=self.dado_TelaAvisoErro.window_h, background=self.dado_TelaAvisoErro.grey)
+        
+        self.bttx_texto_linha1_TelaAvisoErro = CriaBotao('ERRO SISTEMA!',16 , 200, 20, 140, 18, self.dado_TelaAvisoErro.grey,self.canvas_TelaAvisoErro, self.tk_inter_TelaAvisoErro)
+        self.bttx_texto_linha2_TelaAvisoErro = CriaBotao('DESLIGAR POR',16 , 200, 20, 140, 46, self.dado_TelaAvisoErro.grey,self.canvas_TelaAvisoErro, self.tk_inter_TelaAvisoErro)
+        self.bttx_texto_linha3_TelaAvisoErro = CriaBotao('10 SEGUNDOS',16 , 200, 20, 140, 74, self.dado_TelaAvisoErro.grey,self.canvas_TelaAvisoErro, self.tk_inter_TelaAvisoErro)
+        self.bttx_texto_linha4_TelaAvisoErro = CriaBotao('E RELIGAR EQUIPAMENTO.',16 , 300, 42, 90, 115, self.dado_TelaAvisoErro.grey,self.canvas_TelaAvisoErro, self.tk_inter_TelaAvisoErro)
+        
+        
+        self.canvas_TelaAvisoErro.pack()
+        self.frame_TelaAvisoErro.pack()
+
+    def destroy_TelaAvisoErro(self):
+        self.frame_TelaAvisoErro.destroy()
+        self.canvas_TelaAvisoErro.destroy()
+
 class TelaFinalProcesso:
     def __init__(self, tk_inter_TelaFinalProcesso, dado_TelaFinalProcesso):
         self.tk_inter_TelaFinalProcesso= tk_inter_TelaFinalProcesso

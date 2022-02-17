@@ -10,6 +10,7 @@ class Execucao(threading.Thread):
         self._tela = tela
         self._rotina = rotina
         self._toggle = True
+        self._io = Saidas()
 
         self._tempo_corrente_banho = 0
         
@@ -26,17 +27,28 @@ class Execucao(threading.Thread):
                 self.toggle_banho(self._dado.index_banho)
 
                 if self._dado.temperatura_sistema > (self._rotina.banho.temperatura_banho[self._dado.index_banho])*0.98:
-                    if self._tempo_corrente_banho >= (self._rotina.banho.tempo_banho[self._dado.index_banho]):
+                    if self._tempo_corrente_banho >= (self._rotina.banho.tempo_banho[self._dado.index_banho]*60):
                         self._tempo_corrente_banho = 0
                         self.proximo_banho()
                     else:
                         self._tempo_corrente_banho += 1
                 self.atualiza_progresso()
-
+            if self._io.porta_in == 1:
+                self._dado.set_texto_iniciar_pausar("INICIAR")
+                self._dado.controle_estah_acionado = False
+                self._tela.canvas_TelaProcessando.itemconfig(self._tela.bt_iniciar_TelaProcessando.objText, text=self._dado.texto_iniciar_pausar)
+            if self._dado.temperatura_sistema == self._dado.MLX90614_ERRO or (self._dado.temperatura_sistema >= (self._rotina.banho.temperatura_banho[self._dado.index_banho]*self._dado.FATOR_TEMPER_MAX) ):
+                self._dado.controle_estah_acionado = False
+                self._tela.iniciaTelaAvisoErro()
+                self._tela.destroy_TelaProcessando()
+                self._io.magmetron(0)
+                time.sleep(1)
+                self._io.magmetron(0)
+                time.sleep(1)
             time.sleep(1)
 
     def atualiza_progresso(self):
-        valor = (self._tempo_corrente_banho * 100)/(self._rotina.banho.tempo_banho[self._dado.index_banho])
+        valor = (self._tempo_corrente_banho * 100)/(self._rotina.banho.tempo_banho[self._dado.index_banho]*60)
         self._dado.set_texto_percento_progresso_banho(valor)
         self._tela.canvas_TelaProcessando.itemconfig(self._tela.bttx_progresso_banho_TelaProcessando.objText, text= self._dado.texto_percento_progresso_banho)
 

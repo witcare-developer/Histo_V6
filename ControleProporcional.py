@@ -2,7 +2,6 @@ import threading
 import time
 from Saidas import Saidas
 from Dados import Dado
-from Rotinas import RotinaIsopropanol, RotinaXilol
 
 class ControleProporcional(threading.Thread):
     def __init__(self, dado, saida):
@@ -17,7 +16,7 @@ class ControleProporcional(threading.Thread):
             
     def run(self):
         while True:
-            if self._dado.controle_estah_acionado == True:
+            if self._dado.controle_estah_acionado == True and self.out.porta_in == 0:
                 self.Et = self._dado.temperatura_set_point - self._dado.temperatura_sistema
                 self.Pb = self._dado.ganho_poporcional_sistema
 

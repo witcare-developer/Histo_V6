@@ -3,7 +3,6 @@ import smbus
 import threading
 import time
 
-
 class MlX90614(threading.Thread):
     
     """ 
@@ -40,7 +39,6 @@ class MlX90614(threading.Thread):
         self.VALOR_TEMPERATURA = -1
         
         self.MLX90614_TA = 0x07
-        self.MLX90614_ERRO = -273.15
     
     def read_reg(self, reg_addr):
         try:
@@ -57,14 +55,14 @@ class MlX90614(threading.Thread):
     def get_amb_temp(self):
         data = self.read_reg(self.MLX90614_TA)
         if data == False:
-            return self.MLX90614_ERRO
+            return self._dado.MLX90614_ERRO
         else:
             return round(self.data_to_temp(data),self.arredondamento)
     
     def get_obj_temp(self):
         data = self.read_reg(self.MLX90614_TOBJ1)
         if data == False:
-            return self.MLX90614_ERRO
+            return self._dado.MLX90614_ERRO
         else:
             return round(self.data_to_temp(data), self.arredondamento)
 
@@ -78,7 +76,6 @@ class MlX90614(threading.Thread):
             self.VALOR_TEMPERATURA = self.get_amb_temp()
             self._dado.set_temperatura_sistema(self.VALOR_TEMPERATURA)
             #print(self.VALOR_TEMPERATURA)
-
     
     
     

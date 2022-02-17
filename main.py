@@ -18,7 +18,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
            Telas.TelaTecTempo, Telas.TelaTecTemperatura, Telas.TelaEscolheTamanho,
            Telas.TelaEscolheReagente, Telas.TelaCompletaParametros, 
            Telas.TelaProcessando, Telas.TelaTrocaBanho, Telas.TelaConfirmaCancelamento,
-           Telas.TelaFinalProcesso ):
+           Telas.TelaFinalProcesso, Telas.TelaAvisoErro ):
     def __init__(self):
         self.out = Saidas()
         self.wtd = Watchdog()
@@ -53,7 +53,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         Telas.TelaTrocaBanho.__init__(self, tk_inter_TelaTrocaBanho=self.root, dado_TelaTrocaBanho=self.dado)
         Telas.TelaConfirmaCancelamento.__init__(self, tk_inter_TelaConfirmaCancelamento=self.root, dado_TelaConfirmaCancelamento=self.dado)
         Telas.TelaFinalProcesso.__init__(self, tk_inter_TelaFinalProcesso=self.root, dado_TelaFinalProcesso=self.dado)
-        
+        Telas.TelaAvisoErro.__init__(self, tk_inter_TelaAvisoErro=self.root, dado_TelaAvisoErro=self.dado)
 
     """ 
     Metodos reescritos das classes herdadas:
