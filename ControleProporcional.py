@@ -30,11 +30,13 @@ class ControleProporcional(threading.Thread):
                     self.Mv = 100
 
                 self.aciona_pwm(self.Mv)
-
+                
+                self.out.ventilador(1)
                 self.out.magnetron(1)
                 time.sleep(self.ton_pwm)
                 self.out.magnetron(0)
                 time.sleep(self.toff_pwm)
+
                 # print(self.Et)
                 # print(self.Pb)
                 print(self.Mv)
