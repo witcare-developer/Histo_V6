@@ -142,6 +142,15 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
 
     def onBotaoIniciar_TelaPersonalizado(self, event):
         super().onBotaoIniciar_TelaPersonalizado(event)
+        if self.dado.tamanho_da_amostra == self.dado.TAMANHO_NENHUM and self.dado.reagente == self.dado.REAGENTE_NENHUM:
+            self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
+
+            rotina = RotinaExecutada(self.dado)
+            self.execucao = Execucao(self.dado, self, rotina)
+        
+            self.iniciaTelaProcessando()
+            self.execucao.start()
+            self.destroy_TelaPersonalizado()
 
     #-----------------------------------------------------------------
     #TelaTecTempo

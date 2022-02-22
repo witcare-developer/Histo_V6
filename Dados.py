@@ -29,6 +29,7 @@ class Dado:
         self.GANHO_PROPORCIONAL_ISOPROPANOL = 6
         self.GANHO_PROPORCIONAL_XILOL = 6
         self.GANHO_PROPORCIONAL_WITCLEAR = 6
+        self.GANHO_PROPORCIONAL_PESONALIZADO = 6
         self.PERIODO_PWM = 2
         self.MLX90614_ERRO = -273.15
         self.FATOR_TEMPER_MAX = 1.35
