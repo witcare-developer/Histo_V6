@@ -59,6 +59,11 @@ class Dado:
         self._nome_programa = 'Histo V6'
         self._texto_iniciar_pausar = 'INICIAR'
         self._nome_proximo_reagente = 'AlCOOL'
+
+        self._texto_valor_tempo = "05"
+        self._texto_valor_temperatura = "55"
+        self.posicao_digito_tempo = 0
+        self.posicao_digito_temperatura = 0
         
         self._black = '#000000'
         self._white = '#FFFFFF'
@@ -166,6 +171,14 @@ class Dado:
     def ganho_poporcional_sistema(self):
         return self._ganho_poporcional_sistema
 
+    @property
+    def texto_valor_tempo(self):
+        return self._texto_valor_tempo
+
+    @property
+    def texto_valor_temperatura(self):
+        return self._texto_valor_temperatura
+
 
     def set_temperatura_sistema(self, temperatura_sistema):
         self._temperatura_sistema = temperatura_sistema
@@ -225,3 +238,9 @@ class Dado:
 
     def set_nome_proximo_reagente(self, nome_reagente):
         self._nome_proximo_reagente = nome_reagente
+
+    def set_texto_valor_tempo(self, valor):
+        self._texto_valor_tempo = "{:02d}".format(int(valor))
+
+    def set_texto_valor_temperatura(self, valor):
+        self._texto_valor_temperatura = "{:02d}".format(int(valor))

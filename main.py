@@ -1,5 +1,7 @@
 import tkinter as tk
 
+from matplotlib.pyplot import text
+
 #from sqlalchemy import null
 from Saidas import Saidas
 from Watchdog import Watchdog
@@ -149,8 +151,70 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
     def onBotaoValorTempo_TelaTecTempo(self, event):
         super().onBotaoValorTempo_TelaTecTempo(event)
 
+    def onBotaoTeclaZero_TelaTecTempo(self, event):
+        super().onBotaoTeclaZero_TelaTecTempo(event)
+        self.preenche_digito(0)
+
+    def onBotaoTeclaUm_TelaTecTempo(self, event):
+        super().onBotaoTeclaUm_TelaTecTempo(event)
+        self.preenche_digito(1)
+
+    def onBotaoTeclaDois_TelaTecTempo(self, event):
+        super().onBotaoTeclaDois_TelaTecTempo(event)
+        self.preenche_digito(2)
+
+    def onBotaoTeclaTres_TelaTecTempo(self, event):
+        super().onBotaoTeclaTres_TelaTecTempo(event)
+        self.preenche_digito(3)
+
+    def onBotaoTeclaQuatro_TelaTecTempo(self, event):
+        super().onBotaoTeclaQuatro_TelaTecTempo(event)
+        self.preenche_digito(4)
+
+    def onBotaoTeclaCinco_TelaTecTempo(self, event):
+        super().onBotaoTeclaCinco_TelaTecTempo(event)
+        self.preenche_digito(5)
+
+    def onBotaoTeclaSeis_TelaTecTempo(self, event):
+        super().onBotaoTeclaSeis_TelaTecTempo(event)
+        self.preenche_digito(6)
+
+    def onBotaoTeclaSete_TelaTecTempo(self, event):
+        super().onBotaoTeclaSete_TelaTecTempo(event)
+        self.preenche_digito(7)
+
+    def onBotaoTeclaOito_TelaTecTempo(self, event):
+        super().onBotaoTeclaOito_TelaTecTempo(event)
+        self.preenche_digito(8)
+
+    def onBotaoTeclaNove_TelaTecTempo(self, event):
+        super().onBotaoTeclaNove_TelaTecTempo(event)
+        self.preenche_digito(9)
+
+    def onBotaoTeclaSeta_TelaTecTempo(self, event):
+        super().onBotaoTeclaSeta_TelaTecTempo(event)
+        self.dado_TelaTecTempo.posicao_digito_tempo
+        self.dado_TelaTecTempo.set_texto_valor_tempo(0)
+        self.canvas_TelaTecTempo.itemconfig(self.bt_valor_tempo_TelaTecTempo.objText, text=self.dado_TelaTecTempo.texto_valor_tempo)
+            
+
+    def preenche_digito(self, digito):
+        if self.dado_TelaTecTempo.posicao_digito_tempo == 0:
+            self.dado_TelaTecTempo.set_texto_valor_tempo(digito)
+            self.canvas_TelaTecTempo.itemconfig(self.bt_valor_tempo_TelaTecTempo.objText, text=self.dado_TelaTecTempo.texto_valor_tempo)
+            self.dado_TelaTecTempo.posicao_digito_tempo += 1
+        elif self.dado_TelaTecTempo.posicao_digito_tempo >= 1:
+            self.dado_TelaTecTempo.posicao_digito_tempo = 0
+            valor = int(self.dado_TelaTecTempo.texto_valor_tempo)
+            valor = valor*10 + digito
+            self.dado_TelaTecTempo.set_texto_valor_tempo(valor)
+            self.canvas_TelaTecTempo.itemconfig(self.bt_valor_tempo_TelaTecTempo.objText, text=self.dado_TelaTecTempo.texto_valor_tempo)
+
+
+
     def onBotaoTeclaOk_TelaTecTempo(self, event):
         super().onBotaoTeclaOk_TelaTecTempo(event)
+        self.dado_TelaTecTempo.posicao_digito_tempo = 0
         self.dado.tela_ativa = self.dado.TELA_PROCESSO_PERSONALIZADO
         self.iniciaTelaPersonalizado()
         self.destroy_TelaTecTempo()
@@ -162,6 +226,68 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.tela_ativa = self.dado.TELA_PROCESSO_PERSONALIZADO
         self.iniciaTelaPersonalizado()
         self.destroy_TelaTecTemperatura()
+
+    def onBotaoTeclaZero_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaZero_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(0)
+
+    def onBotaoTeclaUm_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaUm_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(1)
+
+    def onBotaoTeclaDois_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaDois_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(2)
+
+    def onBotaoTeclaTres_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaTres_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(3)
+
+    def onBotaoTeclaQuatro_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaQuatro_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(4)
+
+    def onBotaoTeclaCinco_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaCinco_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(5)
+
+    def onBotaoTeclaSeis_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaSeis_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(6)
+
+    def onBotaoTeclaSete_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaSete_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(7)
+
+    def onBotaoTeclaOito_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaOito_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(8)
+
+    def onBotaoTeclaNove_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaNove_TelaTecTemperatura(event)
+        self.preenche_digito_temperatura(9)
+
+    def onBotaoTeclaSeta_TelaTecTemperatura(self, event):
+        super().onBotaoTeclaSeta_TelaTecTemperatura(event)
+        self.dado_TelaTecTemperatura.posicao_digito_temperatura = 0
+        self.dado_TelaTecTemperatura.set_texto_valor_temperatura(0)
+        self.canvas_TelaTecTemperatura.itemconfig(self.bt_valor_tempo_TelaTecTempo.objText, text=self.dado_TelaTecTemperatura.texto_valor_temperatura)
+
+
+    
+
+    def preenche_digito_temperatura(self, digito):
+        if self.dado_TelaTecTemperatura.posicao_digito_temperatura == 0:
+            self.dado_TelaTecTemperatura.set_texto_valor_temperatura(digito)
+            self.canvas_TelaTecTemperatura.itemconfig(self.bt_valor_tempo_TelaTecTempo.objText, text=self.dado_TelaTecTemperatura.texto_valor_temperatura)
+            self.dado_TelaTecTemperatura.posicao_digito_temperatura += 1
+        elif self.dado_TelaTecTemperatura.posicao_digito_temperatura >= 1:
+            self.dado_TelaTecTemperatura.posicao_digito_temperatura = 0
+            valor = int(self.dado_TelaTecTemperatura.texto_valor_temperatura)
+            valor = valor*10 + digito
+            self.dado_TelaTecTemperatura.set_texto_valor_temperatura(valor)
+            self.canvas_TelaTecTemperatura.itemconfig(self.bt_valor_tempo_TelaTecTemperatura.objText, text=self.dado_TelaTecTemperatura.texto_valor_temperatura)
+
 
     #-----------------------------------------------------------------
     #TelaEscolheTamanho

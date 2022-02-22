@@ -152,13 +152,15 @@ class TelaPersonalizado:
         
     def iniciaTelaPersonalizado(self):
         self.frame_TelaPersonalizado = tk.Frame(self.tk_inter_TelaPersonalizado)
+        self.dado_TelaPersonalizado.set_texto_valor_tempo(self.dado_TelaPersonalizado.texto_valor_tempo)
+        self.dado_TelaPersonalizado.set_texto_valor_temperatura(self.dado_TelaPersonalizado.texto_valor_temperatura)
 
         #adiciona área para desenho
         self.canvas_TelaPersonalizado = tk.Canvas(self.tk_inter_TelaPersonalizado, width=self.dado_TelaPersonalizado.window_w, height=self.dado_TelaPersonalizado.window_h, background=self.dado_TelaPersonalizado.grey)
         #self.canvas_TelaPersonalizado.create_image(0,0,image=self.imagem_TelaPersonalizado, anchor='nw')
         
-        self.bt_tempo_TelaPersonalizado = CriaBotao('TEMPO: 05 min.',25 , 400, 60, 40, 35, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
-        self.bt_temperatura_TelaPersonalizado = CriaBotao('TEMPERATURA: 55 °C.',25 , 400, 60, 40, 109, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
+        self.bt_tempo_TelaPersonalizado = CriaBotao('TEMPO: {} min.'.format(self.dado_TelaPersonalizado.texto_valor_tempo) ,25 , 400, 60, 40, 35, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
+        self.bt_temperatura_TelaPersonalizado = CriaBotao('TEMPERATURA: {} °C.'.format(self.dado_TelaPersonalizado.texto_valor_temperatura),25 , 400, 60, 40, 109, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
         self.bt_voltar_TelaPersonalizado = CriaBotao('VOLTAR',16 , 110, 70, 40, 183, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
         self.bt_iniciar_TelaPersonalizado = CriaBotao('INICIAR',16 , 110, 70, 330, 183, self.dado_TelaPersonalizado.green,self.canvas_TelaPersonalizado, self.tk_inter_TelaPersonalizado)
         
@@ -230,8 +232,8 @@ class TelaTecTempo:
         self.canvas_TelaTecTempo = tk.Canvas(self.tk_inter_TelaTecTempo, width=self.dado_TelaTecTempo.window_w, height=self.dado_TelaTecTempo.window_h, background=self.dado_TelaTecTempo.grey)
         #self.canvas_TelaPersonalizado.create_image(0,0,image=self.imagem_TelaPersonalizado, anchor='nw')
         
-        self.bttx_tempo_TelaTecTempo = CriaBotao('TEMPO',25 , 128, 60, 32, 38, self.dado_TelaTecTempo.grey,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
-        self.bt_valor_tempo_TelaTecTempo = CriaBotao('VALO XX',25 , 200, 60, 247, 38, self.dado_TelaTecTempo.green,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
+        self.bttx_tempo_TelaTecTempo = CriaBotao('TEMPO(min)',22 , 170, 60, 32, 38, self.dado_TelaTecTempo.grey,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
+        self.bt_valor_tempo_TelaTecTempo = CriaBotao(self.dado_TelaTecTempo.texto_valor_tempo,25 , 200, 60, 247, 38, self.dado_TelaTecTempo.green,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
         
         self.bt_tecla_zero_TelaTecTempo = CriaBotao('0',25 , 60, 60, 32, 117, self.dado_TelaTecTempo.green,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
         self.bt_tecla_um_TelaTecTempo = CriaBotao('1',25 , 60, 60, 103, 117, self.dado_TelaTecTempo.green,self.canvas_TelaTecTempo, self.tk_inter_TelaTecTempo)
@@ -374,7 +376,7 @@ class TelaTecTemperatura:
         #self.canvas_TelaPersonalizado.create_image(0,0,image=self.imagem_TelaPersonalizado, anchor='nw')
         
         self.bttx_tempo_TelaTecTemperatura = CriaBotao('TEMPERATURA',25 , 275, 60, 32, 38, self.dado_TelaTecTemperatura.grey,self.canvas_TelaTecTemperatura, self.tk_inter_TelaTecTemperatura)
-        self.bt_valor_tempo_TelaTecTemperatura = CriaBotao('VALO XX',25 , 130, 60, 316, 38, self.dado_TelaTecTemperatura.green,self.canvas_TelaTecTemperatura, self.tk_inter_TelaTecTemperatura)
+        self.bt_valor_tempo_TelaTecTemperatura = CriaBotao(self.dado_TelaTecTemperatura.texto_valor_temperatura,25 , 130, 60, 316, 38, self.dado_TelaTecTemperatura.green,self.canvas_TelaTecTemperatura, self.tk_inter_TelaTecTemperatura)
         
         self.bt_tecla_zero_TelaTecTemperatura = CriaBotao('0',25 , 60, 60, 32, 117, self.dado_TelaTecTemperatura.green,self.canvas_TelaTecTemperatura, self.tk_inter_TelaTecTemperatura)
         self.bt_tecla_um_TelaTecTemperatura = CriaBotao('1',25 , 60, 60, 103, 117, self.dado_TelaTecTemperatura.green,self.canvas_TelaTecTemperatura, self.tk_inter_TelaTecTemperatura)
