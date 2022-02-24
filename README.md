@@ -21,5 +21,5 @@
     a) cd /home/pi/LCD-show/
     b) sudo ./LCD35-show
     executando esse último comando o sistema irá reiniciar agora com o LCD e a aplicação rodando
-7 - Para sair do modo LCD-show tem que, com o teclado, aperar crtl+alt e esc ou F1 até aparecer o console, depois digite LCD-hdmi. O sistema vai reiniciar e coltar com o monitor mais a aplicação. Se quiser parar a aplicação abra um terminal - ctrl+alt+T e digite "ps axf" abrirá as execuções. Na coluna comando procure bin/python3 e veja o número do PID loem seguida execute sudo kill e o número do PID
+7 - Para sair do modo LCD-show tem que, com o teclado, apertar crtl+alt e esc ou F1 até aparecer o console, depois digite LCD-hdmi. O sistema vai reiniciar e voltar com o monitor mais a aplicação. Se quiser parar a aplicação abra um terminal - ctrl+alt+T e digite "ps axf" abrirá as execuções. Na coluna comando procure bin/python3 e veja o número do PID em seguida execute sudo kill e o número do PID.
 ```
