@@ -137,7 +137,24 @@ class Execucao(threading.Thread):
                 self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_primeira_clarificacao_TelaProcessando.objRec, fill= self._dado.cor_indicacao_processo)
                 self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_segunda_clarificacao_TelaProcessando.objRec, fill= self._dado.cor_indicacao_processo)
                 self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_terceira_clarificacao_TelaProcessando.objRec, fill= self._dado.cor_indicacao_processo)
+        if self._dado.tamanho_da_amostra == self._dado.TAMANHO_NENHUM:
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.bttx_fixacao_TelaProcessando.objText, text= "")
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.bttx_desidratacao_TelaProcessando.objText, text= "STATUS-BANHO")
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.bttx_clarificacao_TelaProcessando.objText, text= "")
+
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_primeira_fixacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_segunda_fixacao_TelaProcessando.objRec, fill= self._dado.grey)
+
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_primeira_desidratacao_TelaProcessando.objRec, fill= self._dado.cor_indicacao_processo)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_segunda_desidratacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_terceira_desidratacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_quarta_desidratacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_quinta_desidratacao_TelaProcessando.objRec, fill= self._dado.grey)
             
+
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_primeira_clarificacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_segunda_clarificacao_TelaProcessando.objRec, fill= self._dado.grey)
+            self._tela.canvas_TelaProcessando.itemconfig(self._tela.btind_terceira_clarificacao_TelaProcessando.objRec, fill= self._dado.grey)
 
     def config_display_banhos(self):
         self.config_display_banhos_()
@@ -296,6 +313,9 @@ class Execucao(threading.Thread):
         
         if self._rotina.banho.nome_banho[self._dado.index_banho] == "XILOL3" or self._rotina.banho.nome_banho[self._dado.index_banho] == "ISOPROPANOL3" or self._rotina.banho.nome_banho[self._dado.index_banho] == "WITCLEAR3":
             self.toggle_color(self._tela.btind_terceira_clarificacao_TelaProcessando.objRec)
+        
+        if self._rotina.banho.nome_banho[self._dado.index_banho]:
+            self.toggle_color(self._tela.btind_primeira_desidratacao_TelaProcessando.objRec)
         
         
 

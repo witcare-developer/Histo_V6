@@ -400,14 +400,21 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.set_reagente(self.dado.REAGENTE_NENHUM)
         self.dado.set_formol_ativado(False)
         self.dado.controle_estah_acionado = False
+        self.dado.set_texto_iniciar_pausar("INICIAR")
         self.iniciaPrincipal()
         self.destroy_TelaConfirmaCancelamento()
 
     def onBotaoNao_TelaConfirmaCancelamento(self, event):
         super().onBotaoNao_TelaConfirmaCancelamento(event)
         self.dado.tela_ativa = self.dado.TELA_PORCESSANDO
-        self.dado.controle_estah_acionado = True
+        #self.dado.controle_estah_acionado = True
+        self.dado.set_texto_iniciar_pausar("INICIAR")
+
+        rotina = RotinaExecutada(self.dado)
+        self.execucao = Execucao(self.dado, self, rotina)
+
         self.iniciaTelaProcessando()
+        self.execucao.start()
         self.destroy_TelaConfirmaCancelamento()
     #-----------------------------------------------------------------
     #TelaFinalProcesso
@@ -419,6 +426,7 @@ class Main(Telas.TelaPrincipal, Telas.TelaProcessoPadrao, Telas.TelaPersonalizad
         self.dado.set_formol_ativado(False)
         self.dado.controle_estah_acionado = False
         self.dado.beep_fim_processo = False
+        self.dado.set_texto_iniciar_pausar("INICIAR")
         self.iniciaPrincipal()
         self.destroy_TelaFinalProcesso()
     
