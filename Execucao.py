@@ -314,7 +314,7 @@ class Execucao(threading.Thread):
         if self._rotina.banho.nome_banho[self._dado.index_banho] == "XILOL3" or self._rotina.banho.nome_banho[self._dado.index_banho] == "ISOPROPANOL3" or self._rotina.banho.nome_banho[self._dado.index_banho] == "WITCLEAR3":
             self.toggle_color(self._tela.btind_terceira_clarificacao_TelaProcessando.objRec)
         
-        if self._rotina.banho.nome_banho[self._dado.index_banho]:
+        if self._rotina.banho.nome_banho[self._dado.index_banho] == "ROTINA PERSONALIZADA":
             self.toggle_color(self._tela.btind_primeira_desidratacao_TelaProcessando.objRec)
         
         

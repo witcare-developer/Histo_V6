@@ -1,7 +1,5 @@
 import tkinter as tk
 
-from matplotlib.pyplot import text
-
 #from sqlalchemy import null
 from Saidas import Saidas
 from Watchdog import Watchdog
