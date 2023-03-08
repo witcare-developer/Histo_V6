@@ -11,6 +11,8 @@ class Execucao(threading.Thread):
         self._rotina = rotina
         self._toggle = True
         self._io = Saidas()
+        
+        self.OFFSET_TEMPERATURA = 0.94
 
         self._tempo_corrente_banho = 0
         
@@ -26,7 +28,7 @@ class Execucao(threading.Thread):
             if self._dado.index_banho < len(self._rotina.banho.nome_banho):
                 self.toggle_banho(self._dado.index_banho)
 
-                if self._dado.temperatura_sistema > (self._rotina.banho.temperatura_banho[self._dado.index_banho])*0.98:
+                if self._dado.temperatura_sistema > (self._rotina.banho.temperatura_banho[self._dado.index_banho])*self.OFFSET_TEMPERATURA:
                     if self._tempo_corrente_banho >= (self._rotina.banho.tempo_banho[self._dado.index_banho]*60):
                         self._tempo_corrente_banho = 0
                         self.proximo_banho()
